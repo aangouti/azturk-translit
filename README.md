@@ -1,8 +1,6 @@
 # AzTurkTranslit Engine 🇦🇿
 
-An open-source, highly modular system engineered explicitly to handle bi-directional conversion between **Azerbaijani Latin script** and **Perso-Arabic script**. This software is architected to assist journalists, students, and researchers with precise single-language script transformations.
-
-The internal conversion rules are meticulously structured around the formal standardization resolutions established during the **Second Azerbaijani Orthography Seminar (Tehran, 2001)**.
+An open-source, highly modular engine for Azerbaijani bi-directional transliteration (Latin ↔ Perso-Arabic). Engineered explicitly to assist journalists, researchers, and students with precise, unilingual script conversion based on the orthography resolutions from the 2001 Tehran Seminar chaired by Dr. Javad Heyat.
 
 ---
 
@@ -10,30 +8,31 @@ The internal conversion rules are meticulously structured around the formal stan
 
 The engine functions like a lightweight compiler, moving text through a series of decoupled, single-responsibility modules to ensure absolute linguistic control:
 
-Use code with caution.
-┌──────────────────────────────┐
-│          Input Text          │
-└──────────────┬───────────────┘
-│
-▼
-┌──────────────────────────────┐
-│    1. Tokenizer/Normalizer   │  <── Standardizes Unicode variances
-└──────────────┬───────────────┘
-│
-▼
-┌──────────────────────────────┐
-│   2. Lexicon / Map Matcher   │  <── Bypasses rules via Dictionary
-└──────────────┬───────────────┘
-│
-▼
-┌──────────────────────────────┐
-│   3. Structural Rule Engine  │  <── Evaluates position-based vowels
-└──────────────┬───────────────┘
-│
-▼
-┌──────────────────────────────┐
-│         Output Text          │
-└──────────────────────────────┘
+```text
+       ┌──────────────────────────────┐
+       │          Input Text          │
+       └──────────────┬───────────────┘
+                      │
+                      ▼
+       ┌──────────────────────────────┐
+       │    1. Tokenizer/Normalizer   │  <── Standardizes Unicode variances
+       └──────────────┬───────────────┘
+                      │
+                      ▼
+       ┌──────────────────────────────┐
+       │   2. Lexicon / Map Matcher   │  <── Bypasses rules via Dictionary
+       └──────────────┬───────────────┘
+                      │
+                      ▼
+       ┌──────────────────────────────┐
+       │   3. Structural Rule Engine  │  <── Evaluates position-based vowels
+       └──────────────┬───────────────┘
+                      │
+                      ▼
+       ┌──────────────────────────────┐
+       │         Output Text          │
+       └──────────────────────────────┘
+```
 
 ---
 
