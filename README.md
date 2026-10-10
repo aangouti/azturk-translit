@@ -1,4 +1,4 @@
-# Azerbaijani Script Transliteration Engine 🇦🇿
+# AzTurkTranslit Engine 🇦🇿
 
 An open-source, highly modular system engineered explicitly to handle bi-directional conversion between **Azerbaijani Latin script** and **Perso-Arabic script**. This software is architected to assist journalists, students, and researchers with precise single-language script transformations.
 
