@@ -1,9 +1,12 @@
 class AzerbaijaniEngine:
     def __init__(self):
-        # Initial character-by-character mapping dictionary
+        # Expanded character-by-character mapping dictionary
         self.consonant_map = {
             "b": "ب",
-            "p": "پ"
+            "p": "پ",
+            "t": "ت",
+            "m": "م",
+            "n": "ن"
         }
 
     def convert_latin_to_arabic(self, text: str) -> str:
