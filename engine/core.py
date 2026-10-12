@@ -3,25 +3,10 @@ class AzerbaijaniEngine:
         # Comprehensive baseline dictionary mapping for all consonants.
         # Aligned with the 2001 Tehran Seminar orthography rules.
         self.consonant_map = {
-            "b": "ب",
-            "p": "پ",
-            "t": "ت",
-            "m": "م",
-            "n": "ن",
-            "ç": "چ",
-            "j": "ژ",
-            "x": "خ",
-            "ş": "ش",
-            "d": "د",
-            "r": "ر",
-            "f": "ف",
-            "q": "ق",
-            "l": "ل",
-            "v": "و",
-            "g": "گ",  # Will need contextual soft-g rules later
-            "ğ": "غ",
-            "k": "ک",
-            "y": "ی",
+            "b": "ب", "p": "پ", "ç": "چ", "j": "ژ", "x": "خ", 
+            "ş": "ش", "d": "د", "r": "ر", "f": "ف", "q": "ق", 
+            "l": "ل", "v": "و", "g": "گ", "ğ": "غ", "k": "ک", 
+            "y": "ی", "m": "م", "n": "ن",
 
             # --- SPECIAL CONSONANTS LAYER (Page 6 Exceptions) ---
             # The following characters represent phonetic baseline rules for native words.
@@ -56,10 +41,12 @@ class AzerbaijaniEngine:
                     # Medial Position: Middle of a word chunk remains traditionally unwritten
                     else:
                         continue
-                elif char in self.consonant_map:
-                    output.append(self.consonant_map[char])
+                elif char == "a":
+                    # The back vowel 'a' maps directly to Alif (ا)
+                    output.append("ا")
                 else:
-                    output.append(char)
+                    # Fallback to dictionary map or return literal character if unmapped
+                    output.append(self.consonant_map.get(char, char))
                     
             processed_words.append("".join(output))
             

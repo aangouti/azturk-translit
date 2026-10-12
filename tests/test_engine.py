@@ -41,3 +41,14 @@ def test_positional_vowel_ə():
     # Test 'ə' inside a word (Medial -> Omitted) and at the end (Final -> Heh)
     # dədə -> د + (omitted) + د + ه = دده
     assert engine.convert_latin_to_arabic("dədə") == "دده"
+
+def test_harmonic_velar_variations():
+    engine = AzerbaijaniEngine()
+    
+    # ka maps to کا
+    assert engine.convert_latin_to_arabic("ka") == "کا"
+    assert engine.convert_latin_to_arabic("kə") == "که"
+    
+    # ga maps to گا
+    assert engine.convert_latin_to_arabic("ga") == "گا"
+    assert engine.convert_latin_to_arabic("gə") == "گه"
