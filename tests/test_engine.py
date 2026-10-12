@@ -52,3 +52,10 @@ def test_harmonic_velar_variations():
     # ga maps to گا
     assert engine.convert_latin_to_arabic("ga") == "گا"
     assert engine.convert_latin_to_arabic("gə") == "گه"
+
+def test_vowel_a_positional():
+    engine = AzerbaijaniEngine()
+    
+    # 'A' at start -> آ, inside/end -> ا
+    assert engine.convert_latin_to_arabic("Ata") == "آتا"
+    assert engine.convert_latin_to_arabic("Ada") == "آدا"

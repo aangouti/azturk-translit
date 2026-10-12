@@ -42,8 +42,13 @@ class AzerbaijaniEngine:
                     else:
                         continue
                 elif char == "a":
-                    # The back vowel 'a' maps directly to Alif (ا)
-                    output.append("ا")
+                    # Initial Position: Beginning of a word chunk maps to Alif with Mad (آ)
+                    if idx == 0:
+                        output.append("آ")
+                    # Medial/Final Position: Inside or at the end maps to bare Alif (ا)
+                    else:
+                        output.append("ا")
+
                 else:
                     # Fallback to dictionary map or return literal character if unmapped
                     output.append(self.consonant_map.get(char, char))
