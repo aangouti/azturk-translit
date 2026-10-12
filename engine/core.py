@@ -2,11 +2,12 @@ class AzerbaijaniEngine:
     def __init__(self):
         # Comprehensive baseline dictionary mapping for all consonants.
         # Aligned with the 2001 Tehran Seminar orthography rules.
-        # Note: This acts as a fallback phonetic layer; loanwords or contextual splits
-        # will override this via Module 2 (Lexicon) and higher logic layers.
         self.consonant_map = {
             "b": "ب",
             "p": "پ",
+            "t": "ت",
+            "m": "م",
+            "n": "ن",
             "ç": "چ",
             "j": "ژ",
             "x": "خ",
@@ -33,10 +34,33 @@ class AzerbaijaniEngine:
         }
 
     def convert_latin_to_arabic(self, text: str) -> str:
-        """Module 3 Core: Converts explicit Latin letters to Arabic script characters."""
+        """Module 3 Core: Converts Latin text to Arabic script with position-dependent logic."""
         if not text:
             return ""
         
-        # Process the text character by character using our consonant mapping table
-        output = [self.consonant_map.get(char.lower(), char) for char in text]
-        return "".join(output)
+        words = text.lower().split()
+        processed_words = []
+        
+        for word in words:
+            output = []
+            word_len = len(word)
+            
+            for idx, char in enumerate(word):
+                if char == "ə":
+                    # Initial Position: Beginning of a word chunk maps to Alif (ا)
+                    if idx == 0:
+                        output.append("ا")
+                    # Final Position: End of a word chunk maps to Heh (ه)
+                    elif idx == word_len - 1:
+                        output.append("ه")
+                    # Medial Position: Middle of a word chunk remains traditionally unwritten
+                    else:
+                        continue
+                elif char in self.consonant_map:
+                    output.append(self.consonant_map[char])
+                else:
+                    output.append(char)
+                    
+            processed_words.append("".join(output))
+            
+        return " ".join(processed_words)

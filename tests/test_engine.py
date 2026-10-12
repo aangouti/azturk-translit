@@ -31,3 +31,13 @@ def test_basic_consonant_mapping():
     assert engine.convert_latin_to_arabic("k") == "ک"
     assert engine.convert_latin_to_arabic("y") == "ی"
 
+def test_positional_vowel_ə():
+    engine = AzerbaijaniEngine()
+    
+    # Test 'ə' at the beginning of a word (Initial -> Alif)
+    # əl -> ا + ل = ال
+    assert engine.convert_latin_to_arabic("əl") == "ال"
+    
+    # Test 'ə' inside a word (Medial -> Omitted) and at the end (Final -> Heh)
+    # dədə -> د + (omitted) + د + ه = دده
+    assert engine.convert_latin_to_arabic("dədə") == "دده"
