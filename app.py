@@ -1,24 +1,43 @@
+import sys
+from pathlib import Path
 import streamlit as st
-from engine.core import AzerbaijaniEngine
 
-# Initialize the modular engine
-engine = AzerbaijaniEngine()
+# Explicitly force root directory injection to resolve any container path bugs
+root_path = Path(__file__).parent.absolute()
+if str(root_path) not in sys.path:
+    sys.path.insert(0, str(root_path))
 
-st.set_page_config(page_title="AzTurkTranslit Engine", layout="centered")
+# Dynamic try-except block to expose any hidden container deployment import errors
+try:
+    from engine.core import AzerbaijaniEngine  # Adjust class/function name to match core.py
+except ModuleNotFoundError as e:
+    st.error(f"Execution Error: Missing namespace resolution. Details: {e}")
+    st.stop()
 
+# Streamlit UI Setup
 st.title("AzTurkTranslit Engine 🇦🇿")
-st.write("An open-source tool for bi-directional Azerbaijani script conversion.")
+st.caption("Latin ↔ Perso-Arabic Bi-directional Transliteration")
 
-# Text input field for testers
-user_input = st.text_area("Type text in Latin script (Try typing letters 'b' or 'p'):", value="bp")
+# Initialize the engine
+@st.cache_resource
+def load_engine():
+    return AzerbaijaniEngine()
 
+engine = load_engine()
+
+# 1. UI Input Element
+user_input = st.text_input("Enter Azerbaijani Latin text:", key="latin_input")
+
+# 2. Dynamic Execution Trigger
 if user_input:
-    # Process text using the rule core
-    output_text = engine.convert_latin_to_arabic(user_input)
-    
-    st.write("### Perso-Arabic Script Result:")
-    # Render with Right-to-Left styling for proper Arabic script orientation
-    st.markdown(
-        f'<div style="font-size: 28px; direction: rtl; text-align: right; background-color: #f0f2f6; padding: 15px; border-radius: 5px;">{output_text}</div>',
-        unsafe_allow_html=True
-    )
+    # Process the text reactively through your compiled pipeline
+    try:
+        converted_text = engine.convert_latin_to_arabic(user_input)
+        
+        # 3. UI Output Element
+        st.subheader("Perso-Arabic Transliteration:")
+        st.markdown(f"### `{converted_text}`")
+    except Exception as e:
+        st.error(f"Runtime Engine Error: {e}")
+else:
+    st.info("Type text above to trigger live transliteration.")
