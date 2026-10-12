@@ -3,10 +3,10 @@ class AzerbaijaniEngine:
         # Comprehensive baseline dictionary mapping for all consonants.
         # Aligned with the 2001 Tehran Seminar orthography rules.
         self.consonant_map = {
-            "b": "ب", "p": "پ", "ç": "چ", "j": "ژ", "x": "خ", 
-            "ş": "ش", "d": "د", "r": "ر", "f": "ف", "q": "ق", 
-            "l": "ل", "v": "و", "g": "گ", "ğ": "غ", "k": "ک", 
-            "y": "ی", "m": "م", "n": "ن",
+            "b": "ب", "c": "ج", "p": "پ", "ç": "چ", "j": "ژ", 
+            "x": "خ", "ş": "ش", "d": "د", "r": "ر", "f": "ف", 
+            "q": "ق", "l": "ل", "v": "و", "g": "گ", "ğ": "غ", 
+            "k": "ک", "y": "ی", "m": "م", "n": "ن",
 
             # --- SPECIAL CONSONANTS LAYER (Page 6 Exceptions) ---
             # The following characters represent phonetic baseline rules for native words.

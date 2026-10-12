@@ -7,6 +7,7 @@ def test_basic_consonant_mapping():
     
     # Baseline tests
     assert engine.convert_latin_to_arabic("b") == "ب"
+    assert engine.convert_latin_to_arabic("c") == "ج"
     assert engine.convert_latin_to_arabic("p") == "پ"
     assert engine.convert_latin_to_arabic("t") == "ت"
     assert engine.convert_latin_to_arabic("m") == "م"
@@ -23,6 +24,7 @@ def test_basic_consonant_mapping():
     assert engine.convert_latin_to_arabic("q") == "ق"
     assert engine.convert_latin_to_arabic("l") == "ل"
     assert engine.convert_latin_to_arabic("v") == "و"
+    
     
     # Final consonant alphabet batch
     assert engine.convert_latin_to_arabic("g") == "گ"
