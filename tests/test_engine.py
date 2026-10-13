@@ -88,3 +88,14 @@ def test_vowel_undotted_i_positional():
     
     # 'ı' in the middle/end -> یـ
     assert engine.convert_latin_to_arabic("qız") == "قیز"
+
+def test_vowels_o_and_u_positional():
+    engine = AzerbaijaniEngine()
+    
+    # 'o' and 'u' at the start -> او
+    assert engine.convert_latin_to_arabic("oğuz") == "اوغوز"
+    assert engine.convert_latin_to_arabic("ucuz") == "اوجوز"
+    
+    # 'o' and 'u' in the middle/end -> و
+    assert engine.convert_latin_to_arabic("son") == "سون"
+    assert engine.convert_latin_to_arabic("buruq") == "بوروق"
