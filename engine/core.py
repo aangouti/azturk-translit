@@ -55,12 +55,17 @@ class AzerbaijaniEngine:
                     else:
                         output.append("ا")
                 elif char == "e":
-                    # Initial Position: Beginning of a word maps to ائـ
                     if idx == 0:
                         output.append("ائ")
-                    # Medial/Final Position: Inside or at the end maps to ئـ
                     else:
                         output.append("ئ")
+                elif char == "i":
+                    # Initial Position: Beginning of a word chunk maps to ایـ
+                    if idx == 0:
+                        output.append("ای")
+                    # Medial/Final Position: Inside or at the end maps to یـ / ی
+                    else:
+                        output.append("ی")
 
                 else:
                     # Fallback to dictionary map or return literal character if unmapped

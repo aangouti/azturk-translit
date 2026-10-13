@@ -70,3 +70,12 @@ def test_vowel_e_positional():
     
     # 'e' at the end/middle -> ئـ
     assert engine.convert_latin_to_arabic("de") == "دئ"
+
+def test_vowel_i_positional():
+    engine = AzerbaijaniEngine()
+    
+    # 'i' at the start -> ایـ
+    assert engine.convert_latin_to_arabic("iki") == "ایکی"
+    
+    # 'i' in the middle -> یـ
+    assert engine.convert_latin_to_arabic("biz") == "بیز"
