@@ -80,7 +80,13 @@ class AzerbaijaniEngine:
                     # Medial/Final Position: Inside or at the end maps to ؤ
                     else:
                         output.append("ؤ")
-                        
+                elif char == "ü":
+                    # Initial Position: Beginning of a word maps to اۆ
+                    if idx == 0:
+                        output.append("اۆ")
+                    # Medial/Final Position: Inside or at the end maps to ۆ
+                    else:
+                        output.append("ۆ")                      
                 else:
                     # Fallback to dictionary map or return literal character if unmapped
                     output.append(self.consonant_map.get(char, char))

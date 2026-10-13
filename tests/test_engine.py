@@ -108,3 +108,12 @@ def test_vowel_ö_positional():
     
     # 'ö' in the middle -> ؤ
     assert engine.convert_latin_to_arabic("söz") == "سؤز"
+
+def test_vowel_ü_positional():
+    engine = AzerbaijaniEngine()
+    
+    # 'ü' at the start -> اۆ
+    assert engine.convert_latin_to_arabic("üç") == "اۆچ"
+    
+    # 'ü' in the middle -> ۆ
+    assert engine.convert_latin_to_arabic("gün") == "گۆن"
