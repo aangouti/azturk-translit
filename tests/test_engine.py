@@ -61,3 +61,12 @@ def test_vowel_a_positional():
     # 'A' at start -> آ, inside/end -> ا
     assert engine.convert_latin_to_arabic("Ata") == "آتا"
     assert engine.convert_latin_to_arabic("Ada") == "آدا"
+
+def test_vowel_e_positional():
+    engine = AzerbaijaniEngine()
+    
+    # 'e' at the start -> ائـ
+    assert engine.convert_latin_to_arabic("ev") == "ائو"
+    
+    # 'e' at the end/middle -> ئـ
+    assert engine.convert_latin_to_arabic("de") == "دئ"
