@@ -59,7 +59,7 @@ class AzerbaijaniEngine:
                         output.append("ائ")
                     else:
                         output.append("ئ")
-                elif char == "i":
+                elif char in ("i", "ı"):
                     # Initial Position: Beginning of a word chunk maps to ایـ
                     if idx == 0:
                         output.append("ای")

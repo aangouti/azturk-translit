@@ -79,3 +79,12 @@ def test_vowel_i_positional():
     
     # 'i' in the middle -> یـ
     assert engine.convert_latin_to_arabic("biz") == "بیز"
+
+def test_vowel_undotted_i_positional():
+    engine = AzerbaijaniEngine()
+    
+    # 'ı' at the start -> ایـ
+    assert engine.convert_latin_to_arabic("ıldırım") == "ایلدیریم"
+    
+    # 'ı' in the middle/end -> یـ
+    assert engine.convert_latin_to_arabic("qız") == "قیز"
