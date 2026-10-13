@@ -99,3 +99,12 @@ def test_vowels_o_and_u_positional():
     # 'o' and 'u' in the middle/end -> و
     assert engine.convert_latin_to_arabic("son") == "سون"
     assert engine.convert_latin_to_arabic("buruq") == "بوروق"
+
+def test_vowel_ö_positional():
+    engine = AzerbaijaniEngine()
+    
+    # 'ö' at the start -> اؤ
+    assert engine.convert_latin_to_arabic("örnək") == "اؤرنک"
+    
+    # 'ö' in the middle -> ؤ
+    assert engine.convert_latin_to_arabic("söz") == "سؤز"
