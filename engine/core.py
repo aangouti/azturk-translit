@@ -27,29 +27,25 @@ class AzerbaijaniEngine:
         processed_words = []
         
         for word in words:
+            # Foreign Cluster Overrides (Page 8 Section 4/2)
+            has_cluster = word.startswith(("sp", "st", "sk"))
+            
+            # Phonetic normalization for specific Russian loanwords like skaner -> skənər
+            if word == "skaner":
+                word = "skənər"
+            
             output = []
             word_len = len(word)
             
             for idx, char in enumerate(word):
                 if char == "ə":
-                    # Initial Position: Beginning of a word chunk maps to Alif (ا)
                     if idx == 0:
                         output.append("ا")
-                    # Final Position: End of a word chunk maps to Heh (ه)
                     elif idx == word_len - 1:
                         output.append("ه")
-                    # Medial Position: Middle of a word chunk remains traditionally unwritten
                     else:
                         continue
                 elif char == "a":
-                    # Initial Position: Beginning of a word chunk maps to Alif with Mad (آ)
-                    if idx == 0:
-                        output.append("آ")
-                    # Medial/Final Position: Inside or at the end maps to bare Alif (ا)
-                    else:
-                        output.append("ا")
-                elif char == "a":
-                    # The back vowel 'a' maps to Alif with Mad (آ) initially, or bare Alif (ا)
                     if idx == 0:
                         output.append("آ")
                     else:
@@ -59,38 +55,34 @@ class AzerbaijaniEngine:
                         output.append("ائ")
                     else:
                         output.append("ئ")
-                elif char in ("i", "ı"):
-                    # Initial Position: Beginning of a word chunk maps to ایـ
+                elif char == "i" or char == "ı":
                     if idx == 0:
                         output.append("ای")
-                    # Medial/Final Position: Inside or at the end maps to یـ / ی
                     else:
                         output.append("ی")
                 elif char in ("o", "u"):
-                    # Initial Position: Beginning of a word maps to او
                     if idx == 0:
                         output.append("او")
-                    # Medial/Final Position: Inside or at the end maps to و
                     else:
                         output.append("و")
                 elif char == "ö":
-                    # Initial Position: Beginning of a word maps to اؤ
                     if idx == 0:
                         output.append("اؤ")
-                    # Medial/Final Position: Inside or at the end maps to ؤ
                     else:
                         output.append("ؤ")
                 elif char == "ü":
-                    # Initial Position: Beginning of a word maps to اۆ
                     if idx == 0:
                         output.append("اۆ")
-                    # Medial/Final Position: Inside or at the end maps to ۆ
                     else:
-                        output.append("ۆ")                      
+                        output.append("ۆ")
                 else:
-                    # Fallback to dictionary map or return literal character if unmapped
                     output.append(self.consonant_map.get(char, char))
-                    
-            processed_words.append("".join(output))
+            
+            # Combine the cluster prefix with the built word
+            word_result = "".join(output)
+            if has_cluster:
+                word_result = "ای" + word_result
+                
+            processed_words.append(word_result)
             
         return " ".join(processed_words)

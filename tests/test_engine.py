@@ -117,3 +117,11 @@ def test_vowel_ü_positional():
     
     # 'ü' in the middle -> ۆ
     assert engine.convert_latin_to_arabic("gün") == "گۆن"
+
+def test_foreign_consonant_clusters():
+    engine = AzerbaijaniEngine()
+    
+    # Prefix 'iy' (ای) added to initial sp, st, sk cluster words
+    assert engine.convert_latin_to_arabic("sport") == "ایسپورت"
+    assert engine.convert_latin_to_arabic("stalin") == "ایستالین"
+    assert engine.convert_latin_to_arabic("skaner") == "ایسکنر"
